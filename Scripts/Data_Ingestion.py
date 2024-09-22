@@ -1,14 +1,18 @@
 import requests
+import os
 import pandas as pd
 from google.cloud import storage
 from google.oauth2 import service_account
 from google.cloud import storage
+from dotenv import load_dotenv
+load_dotenv()
+
 
 # Path to your service account key file
-SERVICE_ACCOUNT_FILE = 'M:\\LLM_MLOPS\\My_practice\\DataEngineer_projects\\FHIR\\Scripts\\.env\\fhir001-436405-13e681b8f0bd.json'
+service_account_file = os.environ.get('SERVICE_ACCOUNT_FILE')
 
 # Load credentials explicitly
-credentials = service_account.Credentials.from_service_account_file(SERVICE_ACCOUNT_FILE)
+credentials = service_account.Credentials.from_service_account_file(service_account_file)
 storage_client = storage.Client(credentials=credentials)
 
 
